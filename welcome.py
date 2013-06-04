@@ -13,7 +13,7 @@ def kill():
     name = name_inpnut.get()
 
 start = Button(canvas, text = "START", width = 10, command = kill)
-start_window = canvas.create_window(475, 500, anchor = NW, window = start)
+start_window = canvas.create_window(430, 500, anchor = NW, window = start)
 start.configure(bg = "black", fg = "white")
 
 name_label = Label(canvas, text = "So your name is: ", bg = "black", fg = "white")
