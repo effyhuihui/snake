@@ -108,18 +108,6 @@ def tail_direction_check(turning_array, snake_tail,D):
     if snake_tail.getY() == last_turning_point_y and snake_tail.getX() == last_turning_point_x:
         return True
 
-def vertical_escape_check(snake_tail, snake_head,canvas):
-    if snake_tail.getY() == 720:
-        snake_tail.vertical_escape(1)
-        canvas.create_rectangle(snake_tail.getX(), 720 ,snake_tail.getX()+20, 740, fill="black")
-    elif snake_tail.getY() == 0:
-        snake_tail.vertical_escape(0)
-        canvas.create_rectangle(snake_tail.getX(), 0, snake_tail.getX()+20, 20, fill="black")
-    if snake_head.getY() == 720:
-        snake_head.vertical_escape(1)
-    elif snake_head.getY() == 0:
-        snake_head.vertical_escape(0)
-
 if __name__ == "__main__":
     # snake_head = snake_class.Snake_head (600,20,(0,1))
     # snake_tail = snake_class.Snake_rectangle(20, 700,(1,0))

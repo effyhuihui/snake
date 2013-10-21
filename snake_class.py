@@ -19,7 +19,7 @@ class Snake_rectangle(object):
         if choice == 1:
             self.y = 0
         if choice == 0:
-            self.y = 720
+            self.y = 980
 
     def getX(self):
         return self.x

@@ -1,25 +1,36 @@
 __author__ = 'jfhuang'
+"""
+using points to draw polygon:refer to heart drawing!!!!
 
+
+"""
 from tkinter import *
 root = Tk()
 root.geometry("1000x1000")
 
 canvas = Canvas(width = 1000, height = 1000, bg = "black")
 name = ""
+exit = 0
 
 def kill():
+    global exit
     global name
     root.destroy()
-    name = name_inpnut.get()
+    name = name_input.get()
+    exit = 0
+    exit = 1
+    return name, exit 
 
-start = Button(canvas, text = "START", width = 10, command = kill)
-start_window = canvas.create_window(430, 500, anchor = NW, window = start)
+name_label        = Label(text = "So your name is: ", bg = "black", fg = "white")
+name_label_window = canvas.create_window(285, 450, anchor = NW, window = name_label)
+
+name_input        = Entry()
+name_input_window = canvas.create_window(400, 450, anchor = NW, window = name_input)
+
+start             = Button(text = "START", width = 10, command = kill)
+start_window      = canvas.create_window(430, 500, anchor = NW, window = start)
 start.configure(bg = "black", fg = "white")
 
-name_label = Label(canvas, text = "So your name is: ", bg = "black", fg = "white")
-name_label_window = canvas.create_window(285, 450, anchor = NW, window = name_label)
-name_inpnut = Entry(canvas)
-name_input_window = canvas.create_window(400, 450, anchor = NW, window = name_inpnut)
 
 def welcome():
 
@@ -30,7 +41,7 @@ def welcome():
     """
     ### create the frame
     for i in range(0, 980, 30):
-        canvas.create_rectangle(i, 0, i+20, 20, fill = "white")
+        #canvas.create_rectangle(i, 0, i+20, 20, fill = "white")
         canvas.create_rectangle(0, i, 20, i+20, fill = "white")
         canvas.create_rectangle(980, i, 1000,i+20,fill= "white")
 
@@ -79,7 +90,11 @@ def welcome():
         canvas.create_rectangle(675, 202-15*i,688,215-15*i,fill = "white")
         canvas.create_rectangle(600, 232+15*i,613, 245+15*i, fill="white")
 
-
+    ##heart
+    heart_triangle = [745,240,758,280,785,240]
+    canvas.create_oval(745,227,765,247, fill = "#BBFF00")
+    canvas.create_oval(765,227,785,247,fill = "#BBFF00")
+    canvas.create_polygon(heart_triangle, fill = '#BBFF00')
 
 if __name__ == "__main__":
 

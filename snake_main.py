@@ -1,6 +1,7 @@
 __author__ = 'jfhuang'
 
 from tkinter import *
+###import welcome
 import snake_class
 import snake_functions
 from tkinter import messagebox
@@ -15,7 +16,7 @@ root.geometry("1000x1000")
 
 canvas = Canvas(width=1000, height=1000, bg="black")
 
-fin = open()
+
 temp = list("a")
 PAUSED = False
 Time = 800
@@ -124,17 +125,31 @@ def timer():
             Time -= 50
 
         last_score = score
-        print(Time)
+        print(ty,hy)
 
-        ## hit check
-        if hx == 970 or hx == 10 or hy == 0 or hy == 740 :
+        ## hit check or hy == 0 or hy == 980 
+        if hx == 970 or hx == 10:
             messagebox.showinfo("game over", "you hit the wall, your score is {}".format(score))
             clean_canvas()
+            root.destroy()
         if snake_functions.snake_hit_bomb_line_check(bomb_line,  hx, hy):
             messagebox.askokcancel("Game over","you hit yourself, your score is {}".format(score))
-            PAUSED = not PAUSED
+            #PAUSED = not PAUSED
+            #clean_canvas()
+            root.destroy()
 
-            clean_canvas()
+        ##vertical escape new added function!!!!!   
+        if hy == 0:
+            snake_head.vertical_escape(0)
+        if ty == 0:
+            snake_tail.vertical_escape(0)
+            canvas.create_rectangle(tx,0,tx+20,20,fill='black')
+        if hy == 980:
+            snake_head.vertical_escape(1)
+        if ty == 980:
+            snake_tail.vertical_escape(1)
+            canvas.create_rectangle(tx,980,tx+20,1000,fill='black')
+
 
         if len(apple):
             if snake_functions.eat_apple_check(apple, hx, hy, snake_tail):
@@ -148,7 +163,7 @@ def timer():
                 else:
                     snake_tail.change_direction(snake_head.direction)
 
-    root.after(100,timer)
+    root.after(300,timer)
 
 
 
